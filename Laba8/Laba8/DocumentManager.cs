@@ -25,16 +25,9 @@ namespace Laba8
             return documents;
         }
 
-        public Document CreateDocument(string title, DateOnly creationDate, string author, string content, int fontSize, string textColor)
+        public Document CreateDocument(string title, DateOnly creationDate, string author, string content)
         {
-            if (title.ToLower().Contains("text"))
-            {
-                return new TextDocument(title, creationDate, author, content, fontSize, textColor);
-            }
-            else
-            {
-                throw new ArgumentException("Document type not supported.");
-            }
+            return new TextDocument(title, creationDate, author, content);
         }
     }
 }

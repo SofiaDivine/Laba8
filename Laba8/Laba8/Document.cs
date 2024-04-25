@@ -34,15 +34,14 @@ namespace Laba8
 
         public abstract Document AddContent(string content);
 
-        public abstract void Save();
-
-        public abstract void Print();
-
-        public abstract void Close();
-
         public virtual string Sign(string signer)
         {
             return $"Document \"{Title}\" is signed by {signer}";
+        }
+
+        public virtual bool IsSigned()
+        {
+            return false;
         }
 
         public override string ToString()
@@ -52,19 +51,20 @@ namespace Laba8
 
         public override bool Equals(object obj)
         {
-            if (obj == null || GetType() != obj.GetType())
-            {
+            if (obj is not Document other)
                 return false;
-            }
 
-            Document other = (Document)obj;
             return Title == other.Title && CreationDate == other.CreationDate && Author == other.Author && Content == other.Content;
         }
-
+        public virtual int CalculateWordCount()
+        {
+            return Content.Split(new char[] { ' ', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries).Length;
+        }
         public override int GetHashCode()
         {
             return HashCode.Combine(Title, CreationDate, Author, Content);
         }
+
     }
 }
 

@@ -8,11 +8,10 @@
             {
                 DateTime specificDate = new DateTime(2024, 4, 20);
 
-                DocumentManager documentManager = new DocumentManager();
+                var documentManager = new DocumentManager();
 
-                Document doc1 = documentManager.CreateDocument("Text_Document_1", DateOnly.FromDateTime(specificDate), "Sofia Tanchuk", "Glory to Ukraine!", 14, "blue");
-                Document textDoc1 = documentManager.CreateDocument("Text_Document_2", DateOnly.FromDateTime(specificDate), "Illya Mayer", "Glory to Hero!", 18, "yellow");
-
+                var doc1 = documentManager.CreateDocument("Text_Document_1", DateOnly.FromDateTime(specificDate), "Sofia Tanchuk", "Glory to Ukraine!");
+                var textDoc1 = documentManager.CreateDocument("Text_Document_2", DateOnly.FromDateTime(specificDate), "Illya Mayer", "Glory to Heroes!");
 
                 documentManager.AddDocument(doc1);
                 documentManager.AddDocument(textDoc1);
@@ -29,17 +28,12 @@
         {
             foreach (var document in documents)
             {
-                Console.WriteLine(document);
-                document.Save();
-                document.Print();
-                document.Close();
-                if (document is TextDocument textDocument)
-                {
-                    Console.WriteLine($"Word Count in the \"{document.Title}\": {textDocument.CalculateWordCount()}");
-                    Console.WriteLine(textDocument.Sign("Administrator"));
-                }
+                Console.WriteLine(document.ToString());
+                Console.WriteLine($"Word Count in the \"{document.Title}\": {document.CalculateWordCount()}");
+                Console.WriteLine(document.Sign("Administrator"));
             }
         }
+
     }
 }
 
