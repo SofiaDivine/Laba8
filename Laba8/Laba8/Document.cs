@@ -33,12 +33,6 @@ namespace Laba8
         }
 
         public abstract Document AddContent(string content);
-
-        public virtual string Sign(string signer)
-        {
-            return $"Document \"{Title}\" is signed by {signer}";
-        }
-
         public virtual bool IsSigned()
         {
             return false;

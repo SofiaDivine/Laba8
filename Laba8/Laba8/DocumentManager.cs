@@ -25,9 +25,9 @@ namespace Laba8
             return documents;
         }
 
-        public Document CreateDocument(string title, DateOnly creationDate, string author, string content)
+        public Document CreateDocument(string title, DateOnly creationDate, string author, string content, int fontSize = 14, string textColor = "blue")
         {
-            return new TextDocument(title, creationDate, author, content);
+            return new TextDocument(title, creationDate, author, content, fontSize, textColor);
         }
     }
 }

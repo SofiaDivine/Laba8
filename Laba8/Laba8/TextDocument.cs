@@ -8,23 +8,19 @@ namespace Laba8
 {
     public class TextDocument : Document
     {
-        public const int FONT_SIZE = 14;
-        public const string TEXT_COLOR = "blue";
+        private int _fontSize;
+        private string _textColor;
 
-        public TextDocument(string title, DateOnly creationDate, string author, string content)
+        public TextDocument(string title, DateOnly creationDate, string author, string content, int fontSize = 14, string textColor = "blue")
             : base(title, creationDate, author, content)
         {
+            _fontSize = fontSize;
+            _textColor = textColor;
         }
 
         public override Document AddContent(string content)
         {
-            string newContent = $"{Content} {content}";
-            return new TextDocument(Title, CreationDate, Author, newContent);
-        }
-
-        public override string Sign(string signer)
-        {
-            return $"\"{Title}\" signed by {signer}";
+            return new TextDocument(Title, CreationDate, Author, content, _fontSize, _textColor);
         }
 
         public override bool IsSigned()
@@ -37,12 +33,11 @@ namespace Laba8
             return Content.Split(new char[] { ' ', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries).Length;
         }
 
-           public override string ToString()
+        public override string ToString()
         {
-            return $"{base.ToString()}, Font Size: {FONT_SIZE}, Text Color: {TEXT_COLOR}";
+            return $"{base.ToString()}, Font Size: {_fontSize}, Text Color: {_textColor}";
         }
-
     
-}
+    }
 }
 
